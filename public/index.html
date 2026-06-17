@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Школа, где дарят надежду</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" data-view="home">
+      <span class="brand__mark">Н</span>
+      <span>
+        <strong>Школа, где дарят надежду</strong>
+        <small>Центр образования г. Смоленска</small>
+      </span>
+    </a>
+
+    <nav class="main-nav" aria-label="Разделы сайта">
+      <a href="/" data-view="home">Главная</a>
+      <a href="/about" data-view="about">О центре</a>
+      <a href="/schedule" data-view="schedule">Расписание</a>
+      <a href="/team" data-view="team">Администрация</a>
+      <a href="/contacts" data-view="contacts">Контакты</a>
+    </nav>
+
+    <div class="auth-bar">
+      <span id="roleBadge" class="role-badge">Гость</span>
+      <button class="button button--small" id="openAuth" type="button">Вход / регистрация</button>
+      <button class="button button--small button--ghost" id="logoutBtn" type="button" hidden>Выйти</button>
+    </div>
+  </header>
+
+  <main id="app" class="app-shell"></main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>ОГБОУ «Центр образования для детей с особыми образовательными потребностями г. Смоленска»</strong>
+      <p>Данные адаптированы с официального сайта: <a href="https://shkola-darit-nadezhdu.gosuslugi.ru/" target="_blank" rel="noreferrer">shkola-darit-nadezhdu.gosuslugi.ru</a></p>
+    </div>
+    <div class="footer-links">
+      <a href="/contacts" data-view="contacts">Контакты</a>
+      <a href="/schedule" data-view="schedule">Расписание</a>
+      <a href="/team" data-view="team">Администрация</a>
+    </div>
+  </footer>
+
+  <div class="modal" id="authModal" hidden>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button class="modal__close" id="closeAuth" type="button" aria-label="Закрыть">×</button>
+      <h2 id="authTitle">Вход и регистрация</h2>
+
+      <div class="auth-grid">
+        <form id="loginForm" class="auth-card">
+          <h3>Войти</h3>
+          <label>Email<input name="email" type="email" value="admin@hope.local" required></label>
+          <label>Пароль<input name="password" type="password" value="admin2026" required></label>
+          <button class="button button--primary" type="submit">Войти</button>
+          <p class="form-note">Демо-админ: admin@hope.local / admin2026</p>
+        </form>
+
+        <form id="registerForm" class="auth-card">
+          <h3>Регистрация</h3>
+          <label>ФИО<input name="fullName" type="text" required></label>
+          <label>Email<input name="email" type="email" required></label>
+          <label>Пароль<input name="password" type="password" minlength="6" required></label>
+          <label>Роль
+            <select name="role">
+              <option value="user">Обычный пользователь</option>
+              <option value="admin">Администратор</option>
+            </select>
+          </label>
+          <label>Код администратора<input name="adminCode" type="text" placeholder="для роли администратора"></label>
+          <button class="button button--primary" type="submit">Зарегистрироваться</button>
+          <p class="form-note">Код администратора для проекта: hope-admin-2026</p>
+        </form>
+      </div>
+
+      <div class="form-error" id="authError"></div>
+    </div>
+  </div>
+
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
