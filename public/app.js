@@ -117,8 +117,24 @@ function updateAuthUi() {
 }
 
 function sourceBadge() {
-  const text = state.source === 'database' ? 'Данные из MS SQL Server' : 'Демо-данные, SQL Server не подключен';
+  if (state.source === 'github-pages') {
+    return '';
+  }
+
+  const text = state.source === 'database' ? 'Данные из MS SQL Server' : 'Демо-режим';
   return `<span class="role-badge ${state.source === 'database' ? '' : 'role-badge--admin'}">${text}</span>`;
+}
+
+function adminStorageNote() {
+  if (state.source === 'database') {
+    return 'Изменения сохраняются в MS SQL Server.';
+  }
+
+  if (state.source === 'github-pages') {
+    return 'Изменения сохраняются только в браузере текущего устройства.';
+  }
+
+  return 'Изменения работают в демо-памяти до перезапуска сервера.';
 }
 
 async function loadSite() {
@@ -339,7 +355,7 @@ function renderAdminPanel(groups) {
         <div>
           <p class="eyebrow">Администрирование</p>
           <h2>Панель администратора</h2>
-          <p>Изменения сохраняются в MS SQL Server. Если сервер недоступен, они работают в демо-памяти до перезапуска.</p>
+          <p>${adminStorageNote()}</p>
         </div>
       </div>
       <div class="admin-forms">
